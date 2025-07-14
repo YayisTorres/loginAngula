@@ -1,0 +1,84 @@
+<div class="table-container">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">👥 Gestión de Usuarios</h2>
+      <div class="search-filters">
+        <input 
+          type="text" 
+          [(ngModel)]="searchName" 
+          (input)="onSearch()"
+          placeholder="Buscar por nombre..." 
+          class="search-input">
+        <select [(ngModel)]="filterRole" (change)="onSearch()" class="filter-select">
+          <option value="">Todos los roles</option>
+          <option value="admin">Admin</option>
+          <option value="customer">Customer</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-content">
+      @if (loading) {
+        <div class="skeleton-container">
+          @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+            <div class="skeleton"></div>
+          }
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of displayedUsers; track user.id) {
+                <tr class="user-row">
+                  <td>
+                    <img [src]="user.avatar" [alt]="user.name" class="user-avatar" (error)="onImageError($event)">
+                  </td>
+                  <td class="user-id">{{ user.id }}</td>
+                  <td class="user-name">{{ user.name }}</td>
+                  <td class="user-email">{{ user.email }}</td>
+                  <td>
+                    <span class="role-badge" [ngClass]="getRoleClass(user.role)">
+                      {{ getRoleIcon(user.role) }} {{ user.role }}
+                    </span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <div class="pagination-info">
+            <span>Página {{ currentPage }} de {{ totalPages }} ({{ totalUsers }} usuarios)</span>
+          </div>
+          <div class="pagination-buttons">
+            <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-secondary">
+              ← Anterior
+            </button>
+            <span class="page-numbers">
+              @for (page of getPageNumbers(); track page) {
+                <button 
+                  (click)="goToPage(page)" 
+                  [class]="'btn page-btn ' + (page === currentPage ? 'active' : '')"
+                  [disabled]="page === '...'">
+                  {{ page }}
+                </button>
+              }
+            </span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-secondary">
+              Siguiente →
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
