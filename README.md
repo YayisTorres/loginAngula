@@ -2,7 +2,7 @@
 
 ## 📖 Descripción
 
-Este proyecto demuestra cómo consumir APIs públicas utilizando Angular 18. La aplicación consume tanto la [API Fake Store de Platzi](https://api.escuelajs.co/api/v1/users) como la [API de Rick and Morty](https://rickandmortyapi.com/api/character) para mostrar datos en tablas responsivas y paginadas con una interfaz de usuario moderna.
+Este proyecto demuestra cómo consumir APIs públicas utilizando Angular 20. La aplicación consume tanto la [API Fake Store de Platzi](https://api.escuelajs.co/api/v1/users) como la [API de Rick and Morty](https://rickandmortyapi.com/api/character) para mostrar datos en tablas responsivas y paginadas con una interfaz de usuario moderna.
 
 ## 📸 Capturas de Pantalla
 
@@ -262,48 +262,9 @@ console.log("Páginas visibles:", this.getPageNumbers());
 // Resultado: [1, "...", 20, 21, 22, "...", 42]
 ```
 
-## 🤔 Reflexiones
-
-### Preguntas y Respuestas
-
-1. **¿Qué ventajas tiene el uso de servicios en Angular para el consumo de APIs?**
-   - Separación de responsabilidades
-   - Reutilización de código
-   - Gestión centralizada de datos
-   - Mejora de la testabilidad
-   - Manejo eficiente de dependencias
-
-2. **¿Por qué es importante separar la lógica de negocio de la lógica de presentación?**
-   - Mejora la mantenibilidad del código
-   - Facilita la reutilización de la lógica de negocio
-   - Aumenta la testabilidad de cada capa
-   - Permite una mayor escalabilidad del proyecto
-   - Facilita la colaboración en equipo
-
-3. **¿Qué beneficios aporta la API de Rick and Morty al proyecto?**
-   - **Datos ricos**: Información completa de personajes con imágenes
-   - **Funcionalidades avanzadas**: Búsqueda y filtrado múltiple
-   - **Paginación robusta**: Manejo de grandes volúmenes de datos
-   - **Experiencia de usuario mejorada**: Interfaz más interactiva y visual
-
-4. **¿Cómo mejora la experiencia de usuario el dashboard implementado?**
-   - **Navegación intuitiva**: Acceso rápido a todas las funcionalidades
-   - **Información centralizada**: Vista general del estado de la aplicación
-   - **Diseño responsivo**: Adaptación automática a diferentes dispositivos
-   - **Feedback visual**: Indicadores claros del estado de las operaciones
-
-5. **¿Qué otros tipos de datos o APIs podrías integrar en un proyecto como este?**
-   - APIs de autenticación y autorización
-   - APIs de redes sociales
-   - APIs de geolocalización
-   - APIs de pago
-   - APIs de almacenamiento en la nube
-   - APIs de análisis de datos
-   - APIs de mensajería en tiempo real
-
 ## 📦 Dependencias Principales
 
-- Angular 18
+- Angular 20
 - RxJS
 - HttpClient
 - FormsModule
@@ -334,6 +295,6 @@ Guadalupe DayaniravTorres Quiroz
 correo: torresquirozdayanira@gmail.com
 ---
 
-**Desarrollado con ❤️ usando Angular y las APIs de Platzi y Rick and Morty**
+**Desarrollado  ❤️ usando Angular y las APIs de Platzi y Rick and Morty**
 ```
 
