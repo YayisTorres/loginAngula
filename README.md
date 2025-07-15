@@ -15,7 +15,7 @@ Este proyecto demuestra cómo consumir APIs públicas utilizando Angular 18. La 
 *Vista principal mostrando personajes con búsqueda, filtros y paginación avanzada*
 
 ### 👥 Tabla de Usuarios (API Platzi)
-![Users Table](https://github.com/YayisTorres/loginAngula/blob/main/img/tablausuario.png0)
+![Users Table](https://github.com/YayisTorres/loginAngula/blob/main/img/tablausuario.png)
 *Tabla de usuarios obtenidos de la API Fake Store con paginación*
 
 ### 📊 Dashboard Principal
