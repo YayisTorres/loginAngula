@@ -1,23 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
-import { LoginComponent } from './login.component';
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, NgIf],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+  email: string = '';
+  password: string = '';
+  error: string = '';
+  showPassword: boolean = false;
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  constructor(private authService: AuthService, private router: Router) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LoginComponent]
-    })
-    .compileComponents();
+  onSubmit() {
+    this.authService.login(this.email, this.password).subscribe({
+      next: (success) => {
+        if (success) {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.error = 'Email o contraseña incorrectos';
+        }
+      },
+      error: (err) => {
+        this.error = 'Error de conexión. Inténtelo de nuevo.';
+        console.error(err);
+      }
+    });
+  }
 
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+}

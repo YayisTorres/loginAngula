@@ -31,20 +31,19 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts"
-           
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "600kb",
+                  "maximumError": "800kb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                   "maximumWarning": "200kb",
+                    "maximumError": "400kb"
                 }
               ],
               "outputHashing": "all"
@@ -91,6 +90,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

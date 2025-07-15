@@ -15,27 +15,11 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   error: string = '';
+  showPassword: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
-   onSubmit() {
-    // Limpiar error previo
-    this.error = '';
-
-    // Validar campos básicos
-    if (!this.email || !this.password) {
-      this.error = 'Por favor ingrese email y contraseña.';
-      return;
-    }
-
-    // Validar formato de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.email)) {
-      this.error = 'Ingrese un correo electrónico válido.';
-      return;
-    }
-
-    // Intentar iniciar sesión
+  onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
       next: (success) => {
         if (success) {
@@ -46,8 +30,12 @@ export class LoginComponent {
       },
       error: (err) => {
         this.error = 'Error de conexión. Inténtelo de nuevo.';
-        console.error('Error login:', err);
+        console.error(err);
       }
     });
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

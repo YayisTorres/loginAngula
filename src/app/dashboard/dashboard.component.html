@@ -1,17 +1,113 @@
-<div class="dashboard-container">
-    <header>
-      <h1>Welcome to Dashboard</h1>
-    </header>
-    <div class="content">
-      <nav class="sidebar">
-        <ul>
-          <li *ngFor="let item of menuItems">
-            <a [routerLink]="item.link">{{ item.name }}</a>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
+<div class="dashboard">
+  <header class="header">
+    <div class="header-content">
+      <div class="left-section">
+        <button class="hamburger-btn" (click)="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="user-profile">
+          <div class="avatar-container">
+            <ng-container *ngIf="currentUser">
+              <img *ngIf="currentUser.avatar" [src]="currentUser.avatar" alt="User Avatar" class="user-avatar">
+              <div *ngIf="!currentUser.avatar" class="user-avatar-placeholder">
+                {{ getUserInitial() }}
+              </div>
+            </ng-container>
+            <div *ngIf="!currentUser" class="user-avatar-placeholder">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+          <div class="user-details">
+            <h3 class="user-name">{{ currentUser?.name || 'Usuario' }}</h3>
+            <p class="user-role">{{ currentUser?.role || 'Sin rol asignado' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="center-section">
+        <div class="title-section">
+          <h1 class="title">Dashboard</h1>
+          <p class="subtitle">Panel de Administración</p>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <button class="logout-btn" (click)="onLogout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Salir
+        </button>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <main class="main-content">
+    <app-side-menu 
+      [isOpen]="isMenuOpen" 
+      (menuToggle)="toggleMenu()" 
+      (showUsers)="toggleUsersTable()"
+      (showRickAndMorty)="toggleRickAndMortyTable()"
+      (logout)="onLogout()">
+    </app-side-menu>
+
+    <!-- Botones principales de selección -->
+    <div class="selection-buttons" *ngIf="!showUsersTable && !showRickAndMortyTable">
+      <div class="welcome-section">
+        <h2 class="welcome-title">Bienvenido {{ currentUser?.name || 'Usuario' }}</h2>
+        <p class="welcome-subtitle">Selecciona una opción para comenzar</p>
+      </div>
+      
+      <div class="button-grid">
+        <button class="selection-card" (click)="toggleUsersTable()">
+          <div class="card-icon users-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="card-title">Gestión de Usuarios</h3>
+          <p class="card-description">Administra y visualiza la información de todos los usuarios del sistema</p>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </button>
+
+        <button class="selection-card" (click)="toggleRickAndMortyTable()">
+          <div class="card-icon characters-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 class="card-title">Personajes Rick & Morty</h3>
+          <p class="card-description">Explora y gestiona los personajes del universo de Rick and Morty</p>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenido de las tablas -->
+    @if (showUsersTable) {
+      <div class="table-section">
+        <div class="section-header">
+          <button class="back-btn" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+          </button>
+          <h2 class="section-title">Gestión de Usuarios</h2>
+        </div>
+        <app-tabla-consulta></app-tabla-consulta>
+      </div>
+    }
+
+    @if (showRickAndMortyTable) {
+      <div class="table-section">
+        <div class="section-header">
+          <button class="back-btn" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+          </button>
+          <h2 class="section-title">Personajes Rick & Morty</h2>
+        </div>
+        <app-tabla-rick-and-morty></app-tabla-rick-and-morty>
+      </div>
+    }
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

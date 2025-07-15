@@ -1,0 +1,87 @@
+<div class="modal-overlay" (click)="onOverlayClick($event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ editedCharacter.id < 0 ? 'Agregar Personaje' : 'Editar Personaje' }}</h2>
+        <button class="close-btn" (click)="close()">×</button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveChanges()">
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" [(ngModel)]="editedCharacter.name" required>
+          </div>
+          <div class="form-group">
+            <label for="status">Estado:</label>
+            <select id="status" name="status" [(ngModel)]="editedCharacter.status" required>
+              <option value="Alive">Vivo</option>
+              <option value="Dead">Muerto</option>
+              <option value="unknown">Desconocido</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="species">Especie:</label>
+            <input type="text" id="species" name="species" [(ngModel)]="editedCharacter.species" required>
+          </div>
+          <div class="form-group">
+            <label for="type">Tipo:</label>
+            <input type="text" id="type" name="type" [(ngModel)]="editedCharacter.type">
+          </div>
+          <div class="form-group">
+            <label for="gender">Género:</label>
+            <select id="gender" name="gender" [(ngModel)]="editedCharacter.gender" required>
+              <option value="Male">Masculino</option>
+              <option value="Female">Femenino</option>
+              <option value="Genderless">Sin género</option>
+              <option value="unknown">Desconocido</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="origin">Origen:</label>
+            <input type="text" id="origin" name="origin" [(ngModel)]="editedCharacter.origin.name" required>
+          </div>
+          <div class="form-group">
+            <label for="location">Ubicación:</label>
+            <input type="text" id="location" name="location" [(ngModel)]="editedCharacter.location.name" required>
+          </div>
+          <div class="form-group">
+            <label for="image">URL de Imagen:</label>
+            <input type="url" id="image" name="image" [(ngModel)]="editedCharacter.image" placeholder="https://ejemplo.com/imagen.jpg">
+          </div>
+          
+          <!-- Sección de Episodios -->
+          <div class="episodes-section">
+            <h3>Episodios</h3>
+            <div class="episodes-container">
+              <div class="episode-input-group">
+                <input 
+                  type="text" 
+                  [(ngModel)]="newEpisode" 
+                  name="newEpisode"
+                  placeholder="Ej: S01E01 - Pilot"
+                  class="episode-input"
+                >
+                <button type="button" class="btn btn-add-episode" (click)="addEpisode()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="episodes-list" *ngIf="editedEpisodes.length > 0">
+                <div class="episode-item" *ngFor="let episode of editedEpisodes; let i = index">
+                  <span class="episode-text">{{ episode }}</span>
+                  <button type="button" class="btn btn-remove-episode" (click)="removeEpisode(i)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-save">
+              {{ editedCharacter.id < 0 ? 'Agregar Personaje' : 'Guardar Cambios' }}
+            </button>
+            <button type="button" class="btn btn-cancel" (click)="close()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { UserService } from "../../services/user.service";
+import { User } from "../../models/user.model";
 
 @Component({
-  selector: 'app-tabla-consulta',
+  selector: "app-tabla-consulta",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './tabla-consulta.component.html',
-  styleUrls: ['./tabla-consulta.component.css']
+  templateUrl: "./tabla-consulta.component.html",
+  styleUrls: ["./tabla-consulta.component.css"],
 })
 export class TablaConsultaComponent implements OnInit {
   users: User[] = [];
@@ -19,8 +19,8 @@ export class TablaConsultaComponent implements OnInit {
   currentPage = 1;
   pageSize = 8;
   totalPages = 1;
-  searchName = '';
-  filterRole = '';
+  searchName = "";
+  filterRole = "";
 
   constructor(private userService: UserService) {}
 
@@ -37,19 +37,21 @@ export class TablaConsultaComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error al obtener usuarios:', error);
+        console.error("Error al obtener usuarios:", error);
         this.loading = false;
-      }
+      },
     });
   }
 
   applyFilters() {
-    this.filteredUsers = this.users.filter(user => {
-      const matchesName = this.searchName === '' || 
+    this.filteredUsers = this.users.filter((user) => {
+      const matchesName =
+        this.searchName === "" ||
         user.name.toLowerCase().includes(this.searchName.toLowerCase());
-      const matchesRole = this.filterRole === '' || 
+      const matchesRole =
+        this.filterRole === "" ||
         user.role.toLowerCase() === this.filterRole.toLowerCase();
-      
+
       return matchesName && matchesRole;
     });
 
@@ -83,7 +85,7 @@ export class TablaConsultaComponent implements OnInit {
   }
 
   goToPage(page: number | string) {
-    if (typeof page === 'number' && page !== this.currentPage) {
+    if (typeof page === "number" && page !== this.currentPage) {
       this.currentPage = page;
       this.updateDisplayedUsers();
     }
@@ -92,7 +94,7 @@ export class TablaConsultaComponent implements OnInit {
   getPageNumbers(): (number | string)[] {
     const pages: (number | string)[] = [];
     const maxVisiblePages = 5;
-    
+
     if (this.totalPages <= maxVisiblePages) {
       for (let i = 1; i <= this.totalPages; i++) {
         pages.push(i);
@@ -100,37 +102,39 @@ export class TablaConsultaComponent implements OnInit {
     } else {
       if (this.currentPage <= 3) {
         for (let i = 1; i <= 4; i++) pages.push(i);
-        pages.push('...');
+        pages.push("...");
         pages.push(this.totalPages);
       } else if (this.currentPage >= this.totalPages - 2) {
         pages.push(1);
-        pages.push('...');
-        for (let i = this.totalPages - 3; i <= this.totalPages; i++) pages.push(i);
+        pages.push("...");
+        for (let i = this.totalPages - 3; i <= this.totalPages; i++)
+          pages.push(i);
       } else {
         pages.push(1);
-        pages.push('...');
-        for (let i = this.currentPage - 1; i <= this.currentPage + 1; i++) pages.push(i);
-        pages.push('...');
+        pages.push("...");
+        for (let i = this.currentPage - 1; i <= this.currentPage + 1; i++)
+          pages.push(i);
+        pages.push("...");
         pages.push(this.totalPages);
       }
     }
-    
+
     return pages;
   }
 
   getRoleClass(role: string): string {
-    return `role-${role.toLowerCase().replace(/\s+/g, '-')}`;
+    return `role-${role.toLowerCase().replace(/\s+/g, "-")}`;
   }
 
   getRoleIcon(role: string): string {
     const roleIcons: { [key: string]: string } = {
-      'admin': '👑',
-      'customer': '👤',
-      'user': '👤',
-      'manager': '💼',
-      'employee': '👨‍💼'
+      admin: "👑",
+      customer: "👤",
+      user: "👤",
+      manager: "💼",
+      employee: "👨‍💼",
     };
-    return roleIcons[role.toLowerCase()] || '👤';
+    return roleIcons[role.toLowerCase()] || "👤";
   }
 
   get startIndex(): number {
@@ -146,6 +150,7 @@ export class TablaConsultaComponent implements OnInit {
   }
 
   onImageError(event: any) {
-    event.target.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=1';
+    event.target.src =
+      "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=1";
   }
 }
