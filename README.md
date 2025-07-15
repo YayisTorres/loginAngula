@@ -301,18 +301,6 @@ console.log("Páginas visibles:", this.getPageNumbers());
    - APIs de análisis de datos
    - APIs de mensajería en tiempo real
 
-## 🚀 Próximas Mejoras
-
-- [ ] Implementar favoritos de personajes
-- [ ] Agregar más filtros (especie, género)
-- [ ] Modo oscuro/claro
-- [ ] Exportación de datos
-- [ ] Integración con más APIs del universo Rick and Morty (episodios, ubicaciones)
-- [ ] PWA (Progressive Web App) capabilities
-- [ ] Tests unitarios y e2e
-- [ ] Notificaciones push
-- [ ] Caché offline con Service Workers
-
 ## 📦 Dependencias Principales
 
 - Angular 18
@@ -341,15 +329,9 @@ ng e2e
 # Linting
 ng lint
 ```
-
-## 📱 Compatibilidad
-
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Dispositivos móviles iOS/Android
-
+## Autor 
+Guadalupe DayaniravTorres Quiroz
+correo: torresquirozdayanira@gmail.com
 ---
 
 **Desarrollado con ❤️ usando Angular y las APIs de Platzi y Rick and Morty**
