@@ -7,19 +7,19 @@ Este proyecto demuestra cómo consumir APIs públicas utilizando Angular 18. La 
 ## 📸 Capturas de Pantalla
 
 ### 🔐 Pantalla de Login
-![Login Screen](/placeholder.svg?height=600&width=800)
+![Login Screen](https://github.com/YayisTorres/loginAngula/blob/main/img/login.png)
 *Formulario de autenticación con validaciones y diseño responsivo*
 
 ### 🛸 Tabla de Personajes Rick and Morty
-![Rick and Morty Characters](/placeholder.svg?height=700&width=1200)
+![Rick and Morty Characters](https://github.com/YayisTorres/loginAngula/blob/main/img/tablariki.png)
 *Vista principal mostrando personajes con búsqueda, filtros y paginación avanzada*
 
 ### 👥 Tabla de Usuarios (API Platzi)
-![Users Table](/placeholder.svg?height=600&width=1000)
+![Users Table](https://github.com/YayisTorres/loginAngula/blob/main/img/tablausuario.png0)
 *Tabla de usuarios obtenidos de la API Fake Store con paginación*
 
 ### 📊 Dashboard Principal
-![Dashboard](/placeholder.svg?height=800&width=1400)
+![Dashboard](https://github.com/YayisTorres/loginAngula/blob/main/img/dashboard.png)
 *Panel principal con navegación lateral y vista general de la aplicación*
 
 ## 🛠️ Configuración
